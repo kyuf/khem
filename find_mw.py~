@@ -110,10 +110,14 @@ def to_int(num):
     else:
         return 1
 
-#prompt user input
-print("MW Calculator")
-compound = input("Please enter chemical compound: ")
-print("The MW of %s is %s: " % (compound, find_mw(compound)))
+def main():
+    #prompt user input
+    print("MW Calculator\n")
+    while True:
+        compound = input("Please enter chemical compound (Enter 0 to return to khem menu):\n>> ")
+        if compound == "0":
+            break
+        print("The MW of %s is: %s\n" % (compound, find_mw(compound)))
 
 #testing
 """

@@ -9,12 +9,18 @@ def main():
     print("%4s" % ("1. Calculate MW of compound\n"))
     select = input("Enter choice (number):\n>> ")
     
+    #available options
+    options = {1}
+    
     while True:
         try:
             select = int(select)
-            break
+            if select in options:
+                break
+            else:
+                select = "fail"
         except:
-            select = input("Please enter valid number for choice")
+            select = input("Please enter valid number for choice:\n>> ")
     
     #clear screen on successful selection
     os.system("clear")

@@ -3,6 +3,10 @@ from e_props import elements
 
 #parse a compound and return its MW
 def find_mw(compound):
+    #disallow number prefix
+    if is_number(compound[0]):
+        raise ValueError("Number prefix unallowed")
+    
     #initialize MW as 0
     mw = 0
     
@@ -117,8 +121,11 @@ def main():
         compound = input("Please enter chemical compound (Enter 0 to return to khem menu):\n>> ")
         if compound == "0":
             break
-        print("The MW of %s is: %s\n" % (compound, find_mw(compound)))
-
+        try:
+            print("The MW of %s is: %s\n" % (compound, find_mw(compound)))
+        except:
+            print("Invalid input\n")
+        
 #testing
 """
 #6

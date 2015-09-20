@@ -121,13 +121,13 @@ def main():
     #prompt user input
     print("MW Calculator\n")
     while True:
-        compound = input("Please enter chemical compound (Enter 0 to return to khem menu):\n>> ")
+        compound = input("Enter compound (Enter 0 to return to khem menu) >> ")
         if compound == "0":
-            break
+            return
         try:
-            print("The MW of %s is: %s\n" % (compound, find_mw(compound)))
+            print("\nThe MW of %s is: %s\n" % (compound, find_mw(compound)))
         except:
-            print("Invalid input\n")
+            print("\nInvalid input\n")
         
 #testing
 """

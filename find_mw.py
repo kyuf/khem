@@ -64,8 +64,11 @@ def find_mw(compound):
                     mw += (find_mw(s.pop()) + s_mw) * to_int(s_num)
                     s_mw = 0
                 
+                #return if compound fully parsed
                 if j == length:
-                    #return if compound fully parsed
+                    #raise error if missing parenthases
+                    if parens:
+                        raise SyntaxError("Missing parenthases")
                     return mw
                 else:
                     i = j

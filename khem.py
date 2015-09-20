@@ -6,7 +6,7 @@ def main():
     
     print("Welcome to khem")
     print("Select from options:\n")
-    print("%4s" % ("1. Calculate MW of compound\n"))
+    print("1. Calculate MW of compound\n")
     select = input("Enter choice (number):\n>> ")
     
     #available options

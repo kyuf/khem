@@ -31,6 +31,9 @@ class Species:
         #MW and mole balance
         self.mw, self.moles = self.find_mw()
     
+    def __repr__(self):
+        return self.form + " Prefix: " + str(self.prefix)
+    
     def find_mw(self):
         #should not have number prefix
         if self.form and is_number(self.form[0]):
@@ -186,7 +189,26 @@ class MoleBalance:
             string += "%s: %s\n" % (k, v)
         return string
 
+#object to store reactants and products in lists
+class SpecList:
+    def __init__(self, name):
+        self.name = name
+        self.list = []
+        self.moles = MoleBalance()
+    
+    def append(self, spec):
+        self.list.append(spec)
+        self.moles += spec.moles * spec.prefix
+
+    def __repr__(self):
+        print(self.name + "..")
+        for spec in self.list:
+            print(spec)
+        return ""
+
 """
+print(sum_bal([Species("H"), Species("O")]))
+
 print(Species("H2O").mw)
 print(Species("((H)3)2").moles)
 print(Species("H2(H(H))2H(HH(H(H))2)3").moles)

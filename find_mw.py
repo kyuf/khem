@@ -5,7 +5,7 @@ from k_fun import is_number, to_int
 #parse a compound and return its MW
 def find_mw(compound):
     #disallow number prefix
-    if is_number(compound[0]):
+    if compound and is_number(compound[0]):
         raise ValueError("Number prefix unallowed")
     
     #initialize MW as 0

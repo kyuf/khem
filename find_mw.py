@@ -1,5 +1,6 @@
 #import element properties
 from e_props import elements
+from k_fun import is_number, to_int
 
 #parse a compound and return its MW
 def find_mw(compound):
@@ -101,21 +102,6 @@ def find_mw(compound):
             mw += elements[e].MW * to_int(num)
     
     return mw
-
-#return if string can be converted to int
-def is_number(n):
-    try:
-        int(n)
-        return True
-    except:
-        return False
-
-#converts string num to appropriate int
-def to_int(num):
-    if num:
-        return int(num)
-    else:
-        return 1
 
 def main():
     #prompt user input

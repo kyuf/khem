@@ -2,7 +2,7 @@ from k_fun import *
 
 #rxn parser
 def parse(rxn):
-    #lists store parsed species
+    #store parsed species using SpecList
     reactants = SpecList("Reactants")
     products = SpecList("Products")
     prefix = ""
@@ -61,6 +61,10 @@ def parse(rxn):
             while i < len(rxn) and rxn[i] not in special:
                 form += rxn[i]
                 i += 1
+        
+        #invalid input
+        else:
+            raise SyntaxError("Invalid input")
     
     #add last form to products, error if form empty
     if form == "":
@@ -78,7 +82,8 @@ def parse(rxn):
     
     return reactants, products
     
-
+"""
 r, p = parse("2H2 + O2 > 2H2O")
 print(r)
 print(p)
+"""

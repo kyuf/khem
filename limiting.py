@@ -48,4 +48,4 @@ def main():
                 lim_r = spec
                 
         
-        print("\nThe limiting reactant is: %s\n" % (lim_r.form))
+        print("\nThe limiting reactant is the %.3f moles of %s\n" % (lim_mole * lim_r.prefix, lim_r.form))

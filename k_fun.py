@@ -22,7 +22,7 @@ def to_int(num):
 
 #chemical species class
 class Species:
-    def __init__(self, form, prefix = None, charge = None):
+    def __init__(self, form, prefix = None):
         #chemical formula
         self.form = form
         
@@ -32,11 +32,60 @@ class Species:
         else:
             self.prefix = 1
         
+        #charge
+        self.charge_check()
+        
         #MW and mole balance
         self.mw, self.moles = self.find_mw()
     
     def __repr__(self):
         return self.form + " Prefix: " + str(self.prefix)
+    
+    #check if form has charge notation
+    def charge_check(self):
+        #start indexing backwards from end of form
+        i = -1
+        
+        #check for charge brackets
+        if self.form[i] == "}":
+            i -= 1
+            #check for charge sign
+            if self.form[i] in {"+", "-"}:
+                if self.form[i] == "+":
+                    charge_sign = 1
+                else:
+                    charge_sign = -1
+                i -= 1
+            else:
+                raise ValueError("Missing charge sign")
+            
+            #find charge number
+            charge_n = ""
+            while True:
+                #ignore whitespace
+                if self.form[i] == " ":
+                    i -= 1
+                #add to number string 
+                elif is_number(self.form[i]):
+                    #note form is being read backwards
+                    charge_n = self.form[i] + charge_n
+                    i -= 1
+                #terminate on end end bracket
+                elif self.form[i] == "{":
+                    #store charge number
+                    self.charge = to_int(charge_n) * charge_sign
+                    
+                    #store end of form before charge notation
+                    self.form_end = len(self.form) + i
+                    break
+                else:
+                    raise SyntaxError("Charge form error")
+        
+        #no charge notation
+        else:
+            self.charge = 0
+            self.form_end = len(self.form)
+    
     
     def find_mw(self):
         #should not have number prefix
@@ -64,8 +113,7 @@ class Species:
         
         #iterate through characters in compound
         i = 0
-        length = len(self.form)
-        while i < length:
+        while i < self.form_end:
             #check if parentheses
             if self.form[i] == "(":
                 #calculate any stored element tokens and reset them
@@ -93,7 +141,7 @@ class Species:
                     j = i + 1
                     
                     #check for subscript
-                    while j < length and is_number(self.form[j]):
+                    while j < self.form_end and is_number(self.form[j]):
                         s_num += self.form[j]
                         j += 1
                     
@@ -112,7 +160,7 @@ class Species:
                         s_mol.clear()
                     
                     #return if compound fully parsed
-                    if j == length:
+                    if j == self.form_end:
                         #raise error if missing parentheses
                         if parens:
                             raise SyntaxError("Missing parentheses")
@@ -146,7 +194,7 @@ class Species:
             i += 1
         
             #calculate final piece
-            if i == length:
+            if i == self.form_end:
                 num = to_int(num)
                 mw += elements[e].MW * to_int(num)
                 moles += MoleBalance(e, num)
@@ -199,10 +247,12 @@ class SpecList:
         self.name = name
         self.list = []
         self.moles = MoleBalance()
+        self.charge = 0
     
     def append(self, spec):
         self.list.append(spec)
         self.moles += spec.moles * spec.prefix
+        self.charge += spec.charge *spec.prefix
 
     def __repr__(self):
         print(self.name + "..")

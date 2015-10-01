@@ -1,10 +1,11 @@
-#import element properties
-from e_props import elements
 from k_fun import *
 
+#MW calculator
 def main():
     #prompt user input
     print("MW Calculator\n")
+    
+    #loop until valid input
     while True:
         choice = input("Enter species (Enter 0 to return to khem menu) >> ")
         if choice == "0":

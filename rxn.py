@@ -17,7 +17,7 @@ def parse(rxn):
     left = True
     
     #special characters
-    special = {"+", ">", " "}
+    special = {"+", ">", " ", "{"}
     
     #parse through rxn string
     i = 0
@@ -25,28 +25,39 @@ def parse(rxn):
         if rxn[i] in special:
             #space will not trigger any action
             if rxn[i] != " ":
-                #error if + or > with empty form
-                if not form:
-                    raise SyntaxError("Improper syntax")
-                elif rxn[i] == "+":
-                    #add to reactants/products depending on side
-                    prefix = to_int(prefix)
-                    if left:
-                        reactants.append(Species(form, prefix))
-                    else:
-                        products.append(Species(form, prefix))
-                elif rxn[i] == ">":
-                    #add to reactants if on left side
-                    if left:
-                        left = False
-                        reactants.append(Species(form, to_int(prefix)))
-                    #error if on right side
-                    else:
-                        raise SyntaxError("> in wrong location")
-                
-                #reset form and prefix
-                form = ""
-                prefix = ""
+                #adding charge notation to form
+                if rxn[i] == "{":
+                    form += rxn[i]
+                    i += 1
+                    #add to form until finding end bracket
+                    while rxn[i] != "}" and i < len(rxn):
+                        form += rxn[i]
+                        i += 1
+                    #add end bracket
+                    form += rxn[i]
+                else:
+                    #error if + or > with empty form
+                    if not form:
+                        raise SyntaxError("Improper special character usage")
+                    elif rxn[i] == "+":
+                        #add to reactants/products depending on side
+                        prefix = to_int(prefix)
+                        if left:
+                            reactants.append(Species(form, prefix))
+                        else:
+                            products.append(Species(form, prefix))
+                    elif rxn[i] == ">":
+                        #add to reactants if on left side
+                        if left:
+                            left = False
+                            reactants.append(Species(form, to_int(prefix)))
+                        #error if on right side
+                        else:
+                            raise SyntaxError("> in wrong location")
+
+                    #reset form and prefix
+                    form = ""
+                    prefix = ""
             i += 1
         
         #append numbers to prefix
@@ -69,7 +80,7 @@ def parse(rxn):
         
         #invalid input
         else:
-            raise SyntaxError("Invalid input")
+            raise SyntaxError("Unrecognized character for reaction")
     
     #add last form to products, error if form empty
     if form == "":
@@ -83,6 +94,10 @@ def parse(rxn):
     
     #check for mole balance
     if reactants.moles.balance != products.moles.balance:
-        raise SyntaxError("Moles unbalanced")
+        raise ValueError("Moles unbalanced")
+    
+    #check for charge balance
+    if reactants.charge != products.charge:
+        raise ValueError("Charge unbalanced")
     
     return reactants, products

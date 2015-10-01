@@ -16,16 +16,20 @@ Syntax
 --------
 
 Subscripts are entered in line
-__H2O__
 
-Prefixes are entered immeadiately before the species and must be integers: 
-__2NaCl__
+    __H2O__
+
+Prefixes are entered immeadiately before the species and must be integers
+
+    __2NaCl__
 
 Use parenthases as you normally would
-__Ca(OH)2__
+
+    __Ca(OH)2__
 
 Reaction equations are to be written in the following form
-__2H2 + O2 > 2H2O__
+
+    __2H2 + O2 > 2H2O__
 
 Instructions
 --------

@@ -16,8 +16,11 @@ def main():
                 #parse equation in reactant and product lists
                 reactants, products = rxn.parse(equation)
                 break
-            except:
-                print("\nInvalid input\n")
+            except Exception as msg:
+                print("\nError: %s\n" % (msg.args[0]))
+        
+        #formatting
+        print("")
         
         #prompt mass input
         lim_mole = None
@@ -25,7 +28,7 @@ def main():
         for spec in reactants.list:
             #loop until valid input
             while True:
-                r_mass = input("\nEnter mass of %s in g >> " % (spec.form))
+                r_mass = input("Enter mass of %s in g >> " % (spec.form))
                 
                 #test if input is valid number
                 try:

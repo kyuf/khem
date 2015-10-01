@@ -19,6 +19,11 @@ Subscripts are entered in line
 
     H2O
 
+Superscripts for charge are witten in curly braces with +/- after number
+
+    Cl{-}
+    Ca{2+}
+
 Prefixes are entered immediately before the species and must be integers
 
     2NaCl

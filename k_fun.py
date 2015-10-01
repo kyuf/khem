@@ -62,7 +62,7 @@ class Species:
         i = 0
         length = len(self.form)
         while i < length:
-            #check if parenthases
+            #check if parentheses
             if self.form[i] == "(":
                 #calculate any stored element tokens and reset them
                 if e:
@@ -72,7 +72,7 @@ class Species:
                     num = ""
                     e = ""
                     
-                #store active parenthases
+                #store active parentheses
                 parens.append(self.form[i])
                 
                 #add new subset to subset list
@@ -80,7 +80,7 @@ class Species:
                 i += 1
                 continue
                 
-            #while inside parenthases
+            #while inside parentheses
             if parens:
                 
                 #termination of a subset
@@ -109,9 +109,9 @@ class Species:
                     
                     #return if compound fully parsed
                     if j == length:
-                        #raise error if missing parenthases
+                        #raise error if missing parentheses
                         if parens:
-                            raise SyntaxError("Missing parenthases")
+                            raise SyntaxError("Missing parentheses")
                         return mw, moles
                     else:
                         i = j
@@ -208,7 +208,6 @@ class SpecList:
 
 """
 print(sum_bal([Species("H"), Species("O")]))
-
 print(Species("H2O").mw)
 print(Species("((H)3)2").moles)
 print(Species("H2(H(H))2H(HH(H(H))2)3").moles)

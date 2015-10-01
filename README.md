@@ -7,32 +7,31 @@ Python 3.4
 Current Features
 --------
 
--Determine molecular weight of a chemical species
--Find the mass of a species given its moles
--Find the moles of a species given its mass
--Determine the limiting reactant of a reaction given reactant masses
+* Determine molecular weight of a chemical species
+* Find the mass of a species given its moles
+* Find the moles of a species given its mass
+* Determine the limiting reactant of a reaction given reactant masses
 
 Syntax
 --------
 
 Subscripts are entered in line
-ie. H2O
+__H2O__
 
-Prefixes are entered immeadiately before the species and must be integers
-ie. 2NaCl
+Prefixes are entered immeadiately before the species and must be integers: 
+__2NaCl__
 
 Use parenthases as you normally would
-ie. Ca(OH)2
+__Ca(OH)2__
 
 Reaction equations are to be written in the following form
-ie. 2H2 + O2 > 2H2O
+__2H2 + O2 > 2H2O__
 
 Instructions
 --------
 
 Enter the following in your command line
 
-.. sourcecode:: console
 
     python3 khem.py
 

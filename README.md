@@ -19,11 +19,11 @@ Subscripts are entered in line
 
     H2O
 
-Prefixes are entered immeadiately before the species and must be integers
+Prefixes are entered immediately before the species and must be integers
 
     2NaCl
 
-Use parenthases as you normally would
+Use parentheses as you normally would
 
     Ca(OH)2
 

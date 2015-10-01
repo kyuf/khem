@@ -11,6 +11,6 @@ def main():
             return
         try:
             spec = Species(choice)
-            print("\nThe MW of %s is: %s\n" % (spec.form, spec.mw))
+            print("\nThe MW of %s is: %.3f\n" % (spec.form, spec.mw))
         except:
             print("\nInvalid input\n")

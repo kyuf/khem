@@ -1,7 +1,6 @@
 #determine limiting reactant
 import rxn
 
-
 def main():
     print("Limiting Reactant\n")
     while True:
@@ -28,7 +27,7 @@ def main():
             while True:
                 r_mass = input("\nEnter mass of %s in g >> " % (spec.form))
                 
-                #test if input is valid integer
+                #test if input is valid number
                 try:
                     r_mass = float(r_mass)
                     #mass must be greater than 0
@@ -40,7 +39,9 @@ def main():
                 except:
                     print("\nInvalid input\n")    
 
+            #calculate moles from mass using MW
             r_mole = (r_mass/spec.mw) / spec.prefix
+            
             #limiting reactant will have least moles
             if lim_mole == None or r_mole < lim_mole:
                 lim_mole = r_mole

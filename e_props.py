@@ -1,3 +1,10 @@
+"""
+This file contains information for the elements stored in the Element class.
+The Element class currently holds the symbol, name, and MW of the element.
+All Element objects are stored in the elements dictionary. Import this file
+when you need to access elemental properties. Additional properties will be
+added when necessary
+"""
 #properties of elements
 class Element:
     def __init__(self, NAME, MW):

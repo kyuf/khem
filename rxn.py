@@ -1,3 +1,8 @@
+"""
+Import this file whenever a chemical equation needs to be parsed. Currently
+checks for mole balance to determine if equation is valid. Will implement
+charge balance check when redox parsing is added in future.
+"""
 from k_fun import *
 
 #rxn parser
@@ -81,9 +86,3 @@ def parse(rxn):
         raise SyntaxError("Moles unbalanced")
     
     return reactants, products
-    
-"""
-r, p = parse("2H2 + O2 > 2H2O")
-print(r)
-print(p)
-"""

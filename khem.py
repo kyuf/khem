@@ -1,3 +1,8 @@
+"""
+This is the root of the khem program. Running this program will allow you to
+navigate to the available calculators from the command line. Selection screen
+should be updated as new calculators are added.
+"""
 #main menu
 def main():
     #clear screen

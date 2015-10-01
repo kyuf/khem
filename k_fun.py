@@ -1,4 +1,8 @@
-#helpful shared functions
+"""
+This file contains functions and classes that will be frequently used to run
+calculations in other files. This file should be imported whenever creating a
+new calculation file
+"""
 from e_props import elements
 
 #return if string can be converted to int
@@ -205,12 +209,3 @@ class SpecList:
         for spec in self.list:
             print(spec)
         return ""
-
-"""
-print(sum_bal([Species("H"), Species("O")]))
-print(Species("H2O").mw)
-print(Species("((H)3)2").moles)
-print(Species("H2(H(H))2H(HH(H(H))2)3").moles)
-print(Species("NaCl").mw)
-print(Species("Ca(OH)2").moles)
-"""

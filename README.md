@@ -17,19 +17,19 @@ Syntax
 
 Subscripts are entered in line
 
-    __H2O__
+    H2O
 
 Prefixes are entered immeadiately before the species and must be integers
 
-    __2NaCl__
+    2NaCl
 
 Use parenthases as you normally would
 
-    __Ca(OH)2__
+    Ca(OH)2
 
 Reaction equations are to be written in the following form
 
-    __2H2 + O2 > 2H2O__
+    2H2 + O2 > 2H2O
 
 Instructions
 --------
